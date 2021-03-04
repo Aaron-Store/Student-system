@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>2020学生管理系统</title>
+    <link rel="shortcut icon" href="./images/logo.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./index.css" />
+</head>
+
+<body>
+    <div class="warpper">
+        <header>
+            <div class="left">
+                <img src="./images/logo.png" alt="渡一教育" />
+                <span>学生管理系统</span>
+            </div>
+        </header>
+
+        <section>
+            <nav>
+                <dl>
+                    <dt>学生管理</dt>
+                    <dd data-id="student-list" class="active">学生列表</dd>
+                    <dd data-id="student-add">新增学生</dd>
+                </dl>
+            </nav>
+
+            <div class="content">
+                <!-- 增加学生 -->
+                <div id="student-add">
+                    <form action="" id="student-add-form">
+                        <div><label for="name">姓名</label><input type="text" id="name" /></div>
+                        <div><label for="sex">性别</label>
+                            <input type="radio" name="sex" id="male" value="0" checked /><label class="sex" for="male">男</label>
+                            <input type="radio" name="sex" id="female" value="1" /><label class="sex" for="female">女</label>
+                        </div>
+                        <div><label for="sNo">学号</label><input type="text" id="sNo" /></div>
+                        <div><label for="email">邮箱</label><input type="email" id="email" /></div>
+                        <div><label for="birth">出生年</label><input type="text" id="birth" /></div>
+                        <div><label for="phone">手机号</label><input type="text" id="phone" /></div>
+                        <div><label for="address">住址</label><input type="text" id="address" /></div>
+                        <div>
+                            <input type="submit" class="btn" id="student-add-btn" />
+                            <input type="reset" value="重置" class="btn" />
+                        </div>
+                    </form>
+                </div>
+                <!-- 所有学生列表 -->
+                <div id="student-list">
+                    <!-- 查询头部 -->
+                    <div class="find-student-top">
+                        <span>学生管理系统</span>
+                        <div>
+                            <select name="" id="type">
+                                <option value="0">学号</option>
+                                <option value="1">姓名</option>
+                                <option value="2">邮箱</option>
+                                <option value="3">出生年</option>
+                                <option value="4">手机号</option>
+                                <option value="5">住址</option>
+                            </select>
+                            <select name="" id="sel-sex">
+                                <option value="-1">无</option>
+                                <option value="0">男</option>
+                                <option value="1">女</option>
+                            </select>
+                            <input id="find-input" type="text" value="" placeholder="可搜邮箱、学生学号和地址，请您少字也别输错字" />
+                            <button id="find-btn">搜索</button>
+                            <img class="find-img" src="./images/reset.png" alt="刷新">
+
+                        </div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>学号</th>
+                                <th>姓名</th>
+                                <th>性别</th>
+                                <th>邮箱</th>
+                                <th>年龄</th>
+                                <th>手机号</th>
+                                <th>住址</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbody-list"></tbody>
+                    </table>
+                    <div class="pager">
+                        <button id="prev-btn">上一页</button>
+                        <button id="next-btn">下一页</button>
+                    </div>
+                    <div class="modal">
+                        <div class="modal-content">
+                            <h3>编辑表单</h3>
+                            <form action="" id="student-edit-form">
+                                <div><label for="edit-name">姓名</label><input type="text" name="name" id="edit-name" /></div>
+                                <div><label for="sex">性别</label>
+                                    <input type="radio" name="sex" id="edit-male" value="0" checked /><label class="sex" for="edit-male">男</label>
+                                    <input type="radio" name="sex" id="edit-female" value="1" /><label class="sex" for="edit-female">女</label>
+                                </div>
+                                <div>
+                                    <label for="edit-sNo">学号</label><input type="text" name="sNo" id="edit-sNo" value="0405180139" readonly />
+                                </div>
+
+                                <div><label for="edit-email">邮箱</label><input type="email" name="email" id="edit-email" />
+                                </div>
+                                <div>
+                                    <label for="edit-birth">出生年</label><input type="text" name="birth" id="edit-birth" />
+                                </div>
+                                <div>
+                                    <label for="edit-phone">手机号</label><input type="text" name="phone" id="edit-phone" />
+                                </div>
+                                <div>
+                                    <label for="edit-address">住址</label><input type="text" name="address" id="edit-address" />
+                                </div>
+
+                                <div>
+                                    <input id="student-edit-btn" type="submit" class="btn" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- <script src="./data.js"></script> -->
+    <script src="./request.js"></script>
+    <script src="./index.js"></script>
+    <!-- <script>
+            var res = saveData('http://open.duyiedu.com/api/student/addStudent', Object.assign({
+                appkey: "manage111_1581347026589"
+            }, {
+                sNo: "23132",
+                name: "群文件",
+                sex: 1,
+                birth: "1994",
+                phone: "12555655484",
+                address: "俄罗斯",
+                email: "2356520718@qq.cn"
+            }));
+            console.log(res);
+        </script> -->
+</body>
+
+</html>
